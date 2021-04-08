@@ -18,7 +18,7 @@ const AddProduct = () => {
             price: data.price,
             imageURL : imageURL,
         }
-        const URL = 'http://localhost:5055/addProduct'
+        const URL = 'https://evening-fjord-37236.herokuapp.com/addProduct'
         console.log(eventData)
         fetch(URL, {
             method: 'POST',

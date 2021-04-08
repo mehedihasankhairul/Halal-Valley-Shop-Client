@@ -6,7 +6,7 @@ import { UserContext } from '../../App';
 import firebaseConfig from './firebaseConfig';
 
 const LogIn = () => {
-   
+
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [newUser, setNewUser] = useState(false);
     const history = useHistory();
@@ -16,13 +16,12 @@ const LogIn = () => {
     if (!firebase.apps.length) {
         firebase.initializeApp(firebaseConfig);
     }
-    
+
     const handleGoogleLogIn = () => {
         var provider = new firebase.auth.GoogleAuthProvider();
         firebase.auth()
             .signInWithPopup(provider)
             .then((result) => {
-                /** @type {firebase.auth.OAuthCredential} */
                 var credential = result.credential;
                 var token = credential.accessToken;
                 const { displayName, photoURL, email } = result.user;
@@ -40,8 +39,9 @@ const LogIn = () => {
 
 
     return (
-        <div className="container text-center"><br/><br/><br/><br/><br/><br/><br/>
-            <button style={{ width:'20%'}} className="btn btn-outline-primary" onClick={handleGoogleLogIn}><img style={{ width:'20%', paddingRight:'20px'}} src="https://symbols-electrical.getvecta.com/stencil_82/45_google-icon.d8d982f8a1.svg" alt=""/>{newUser ? 'log out' : 'Log In to Google' } </button>
+        <div className="container text-center"><br />
+            <button style={{ width: '20%' }} className="btn btn-outline-primary" onClick={handleGoogleLogIn}><img style={{ width: '20%', paddingRight: '20px' }} src="https://symbols-electrical.getvecta.com/stencil_82/45_google-icon.d8d982f8a1.svg" alt="" /> {newUser ? 'Log Out' : 'Log In to Google'} </button>
+            <h4>Dear {loggedInUser}</h4>
         </div>
     );
 };

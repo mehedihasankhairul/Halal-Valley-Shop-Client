@@ -1,14 +1,15 @@
-// import React, { useContext } from 'react';
+
 import Grid from '@material-ui/core/Grid';
 import logo from '../../icons/logo1.png'
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-// import { UserContext } from '../../App';
+import { useContext } from 'react';
+import { UserContext } from '../../App';
 
 
 const Header = () => {
-    // const [user]=useContext(UserContext)
+    const [user]=useContext(UserContext)
     return (
         <Container>
         <div className= ' col-md-12'>
@@ -25,7 +26,7 @@ const Header = () => {
                     <Grid item xs={12} md={2}><Link to='/orders' className='link text-decoration-none'><b>Orders</b></Link></Grid>
                     <Grid item xs={12} md={2}><Link to='/deals' className='link text-decoration-none'><b>Deals</b></Link></Grid>
                     {
-                        // user.isSignedIn ? <Grid item xs={12} md={2}><p className='text-info pt-2 font-weight-bold'>{user.name || 'User'} </p></Grid>
+                        user.isSignedIn ? <Grid item xs={12} md={2}> <p className='text-info pt-2 font-weight-bold'>{user.name || 'User'} </p> </Grid> :
                         
                          <Grid item xs={12} md={2} >
                             <Link to='/logIn' className='link text-decoration-none'>

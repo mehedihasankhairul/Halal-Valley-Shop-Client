@@ -1,49 +1,47 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory, useParams } from 'react-router';
+import { UserContext } from '../../App';
 
 const CheckOut = () => {
-    const [loggedInUser,setLoggedInUser] =useContext(UserContext)
-    const [book ,setBook] = useState({})
-  console.log(book);
-  
-     const {id} = useParams()
-     useEffect(() => {
-      fetch(http://localhost:5000/checkout/${id})
-      .then(res => res.json())
-      .then(data =>setBook(data))
-  }, [id])
-  const history = useHistory()
-  const handleCheckOut=()=>{
-          fetch(http://localhost:5000/addorder/ , {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json'},
-              body: JSON.stringify({ 
-                  name:book.name ,
-                  price:book.price,
-                  author:book.author ,
-                  username:loggedInUser.name,
-                  email:loggedInUser.email
-              })
-          })
-          .then(()=>{
-             history.push('/order')
-              const newloggedInUser = {...loggedInUser , orderDate: new Date()}
-              setLoggedInUser(newloggedInUser)
-              console.log(newloggedInUser)
-             
-          })
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext)
+    const [product, setProduct] = useState({})
+    console.log(product);
 
-  
+    const { id } = useParams()
+    useEffect(() => {
+        fetch(`https://evening-fjord-37236.herokuapp.com/checkout/${id}`)
+            .then(res => res.json())
+            .then(data => setProduct(data))
+    }, [id])
+    const history = useHistory()
+    const handleCheckOut = () => {
+        fetch('https://evening-fjord-37236.herokuapp.com/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: product.name,
+                price: product.price,
+                username: loggedInUser.name,
+                email: loggedInUser.email
+            })
+        })
+            .then(() => {
+                history.push('/product')
+                const newloggedInUser = { ...loggedInUser, orderDate: new Date() }
+                setLoggedInUser(newloggedInUser)
+                console.log(newloggedInUser)
+            })
+    }
+
     return (
-        <div className="main p-4">
-        <h2 className="text-danger text-center">Checkout Order</h2>   
-      <h4>Hello  {loggedInUser.name}</h4>
-      <h4 className="text-center">Your Order Summery</h4>
-      <p className="text-primary ">book name {book.name}</p>
-       <h5> Author Name:{author}</h5>
-       <h5>Quantity : 1</h5>
-    <button className="btn btn-success"onClick={handleCheckOut}>checkout</button> 
+        <div className="main p-4 display-content-center">
+            <h2 className="text-danger text-center">Checkout Order</h2>
+            <h4>Hello  {loggedInUser.name}</h4>
+            <h2 className="text-center">Your Order Summery</h2>
+            <h1 className="text-primary ">Product name: {product.name}</h1>
+            <h5>Quantity : 1 </h5>
+            <button className="btn btn-success" onClick={handleCheckOut}>CheckOut</button>
         </div>
     );
 };
-
 export default CheckOut;

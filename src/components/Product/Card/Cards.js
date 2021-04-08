@@ -16,7 +16,7 @@ const Cards = ({product}) => {
                         <Card.Title>{product.name} - {product.wight}</Card.Title>
                         <Card.Body className="row">
                             <Card.Text className="col-md-6 text-success"><h2>{product.price}</h2></Card.Text>
-                            <Button className="col-md-6 size" variant="success"><Link to={"/check" + product._id}>Buy Now</Link> </Button>
+                            <Button className="col-md-6 size" variant="success"><Link to={"/checkout/" + product._id}>Buy Now</Link> </Button>
                         </Card.Body>
                     </Card.Body>
                 </Card>
