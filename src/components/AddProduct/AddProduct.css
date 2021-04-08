@@ -1,0 +1,11 @@
+input{
+    margin: 20px;
+    width: 30%;
+    padding: 08px;
+    border-radius: 05px;
+    border: 0px;
+}
+.form{
+    background-color: rgba(128, 128, 128, 0.322);
+    border-radius: 05px;
+}

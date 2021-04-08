@@ -1,0 +1,10 @@
+.body{
+    display: grid;
+    grid-gap: 20px 50px;
+    grid-template-columns: 288px 288px 288px;
+    padding-left: 100px;
+    padding-top: 50px;
+}
+.size{
+    height:40px
+}
